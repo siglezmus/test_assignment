@@ -24,8 +24,8 @@ if not args.interval.isnumeric():
     raise ValueError("Error: interval must be integer.")
 interval = int(args.interval)
 
-if not os.path.isfile(args.log_file_path):
-    raise ValueError("Error: Log file does not exist.")
+if not args.log_file_path[-4:] == ".log" and os.path.isdir(args.log_file_path[:args.log_file_path.rfind("/")]):
+    raise ValueError("Error: Log file path does not exist.")
 log_file_path = args.log_file_path
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
